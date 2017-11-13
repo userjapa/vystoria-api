@@ -17,17 +17,18 @@ class Inspector {
 
     try {
       const findByIdResponse = await InspectorModel.findById(InspectorId)
-      response.json(findByIdResponse) 
+      response.json(findByIdResponse)
     } catch (findByIdError) {
       response.status(500).send('Error 500')
     }
   }
 
   async getInspectors (response) {
+
     try {
       const findResponse = await InspectorModel.find()
-      response.json(findResponse) 
-    } catch (find) {
+      response.json(findResponse)
+    } catch (findError) {
       response.status(500).send('Error 500')
     }
   }
