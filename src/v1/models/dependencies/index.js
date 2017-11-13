@@ -21,7 +21,7 @@ const itemsSchema = new mongoose.Schema({
 const schema = new mongoose.Schema({
   _id: { type: String, default: () => Random.id(), required: true },
   name: { type: String, trim: true, required: true },
-  createdAt: { type: Date, default: new Date() }
+  createdAt: { type: Date, default: new Date() },
   items: [itemsSchema]
 })
 

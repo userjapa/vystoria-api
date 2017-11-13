@@ -1,20 +1,20 @@
 
 import express from 'express'
-import Inspector from '../models/Inspectors'
+import InspectorController from '../controllers/inspector'
 
 const router = express.Router()
 
-router.use((req, res, next) => {
-  console.log(new Date())
-  next()
+router.get('/inspector', (req, res) => {
+  const inspectorController = new InspectorController()
+  const { id } = req.query
+  id 
+    ? inspectorController.getInspectorById(id, res)
+    : inspectorController.getInspectors(res)
 })
 
-router.post('/createUser', (req, res) => {
-
-  Inspector.create(req.body, (err, res) => {
-    console.log(res)
-  })
-  res.json({ 'payload': 'ok' })
+router.post('/inspector', (req, res) => {
+  const inspectorController = new InspectorController()
+  inspectorController.createInspector(req.body, res)
 })
 
 export default router
