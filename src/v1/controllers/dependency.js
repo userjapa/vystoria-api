@@ -36,7 +36,6 @@ class Dependency {
 
     try {
       const findOneResponse = await DependencyModel.findOne({ _id: dependencyId })
-      console.log('findOneResponse', findOneResponse)
       
       const items = [
         ...findOneResponse.items,
