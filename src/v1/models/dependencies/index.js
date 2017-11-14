@@ -5,7 +5,7 @@ import EnumHelper from '../../../../commons/EnumHelper'
 
 const detailsSchema = new mongoose.Schema({
   _id: { type: String, default: () => Random.id(), required: true },
-  title: { type: String },
+  title: { type: String, trim: true },
   description: { type: String, trim: true }
 })
 
