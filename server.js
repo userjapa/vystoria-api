@@ -1,12 +1,9 @@
 import cluster from 'cluster'
 import { cpus } from 'os'
-import dotenv from 'dotenv'
 
-import './configs/database'
+import './commons/loadEnvVariables'
+import './commons/database'
 import app from './app'
-
-dotenv
-  .config({ silent: true, path: `.env.${process.env.NODE_ENV}` })
 
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`)
