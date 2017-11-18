@@ -7,9 +7,10 @@ import router from './src/v1/routes'
 
 const app = express()
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
 app.use(Authentication.init())
+app.use(bodyParser.urlencoded({ extended: false, limit: '5mb' }))
+app.use(bodyParser.json({ limit: '5mb' }))
+app.use(bodyParser.urlencoded({ extended: true, uploadDir: '/tmp/uploads', limit: '10mb' }))
 
 app.use(router)
 

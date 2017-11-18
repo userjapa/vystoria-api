@@ -4,6 +4,10 @@ import Authentication from '../../../commons/authentication'
 
 const inspector = (router) => {
 
+  router.get('/test', Authentication.authenticate(), (req, res) => {
+    res.json(req.user)
+  })
+
   router.post('/token', (req, res) => {
     const inspectorController = new InspectorController()
     inspectorController.createAJWTToken(req.body, res)
