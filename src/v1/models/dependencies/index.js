@@ -14,7 +14,10 @@ const itemsSchema = new mongoose.Schema({
   name: { type: String, trim: true, required: true },
   condition: { type: Number, enum: EnumHelper.conditions.ALL, required: true },
   observations: { type: String, trim: true },
-  imagesPath: Array,
+  images: {
+    id: { type: String, required: true },
+    path: { type: String, required: true }
+  },
   details: [detailsSchema]
 })
 

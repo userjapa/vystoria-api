@@ -1,4 +1,4 @@
 
 export default {
-  general: { dest: '/tmp/upload', fieldNameSize: 100, fileSize: 1024 * 1024 }
+  general: { dest: '/tmp/uploads', fieldNameSize: 100, fileSize: 1024 * 1024 }
 }

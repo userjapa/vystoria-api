@@ -3,13 +3,18 @@ import DependencyModel from '../models/Dependencies'
 
 class Dependency {
 
-  async getDependencyById (dependencyId) {
+  async getDependencyById (dependencyId, response) {
 
     try {
       const findByIdResponse = await DependencyModel.findById(dependencyId)
-      response.json(findByIdResponse)
+
+      return response
+        ? response.json(findByIdResponse)
+        : Promise.resolve(findByIdResponse)
     } catch (findByIdError) {
-      response.status(500).send('Error 500')
+      return response
+        ? response.status(500).send('Error 500')
+        : Promise.reject(new Error(findByIdError))
     }
   }
 
