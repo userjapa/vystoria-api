@@ -10,7 +10,6 @@ const upload = (router) => {
 
   router.post('/upload', Authentication.authenticate(), uploadDriver.single('file'), (req, res) => {
     const { query, file } = req
-    console.log(file)
     UploadFactory.chooseUploadType(query, file, res)
   })
 }

@@ -3,6 +3,23 @@ import DependencyModel from '../models/Dependencies'
 
 class Dependency {
 
+  async getItemById (itemId, response) {
+    
+    try {
+      const dependency = await DependencyModel.findOne({
+        'items._id': { $in: [itemId] }
+      }).lean()
+      
+      return response
+        ? response.json(dependency)
+        : Promise.resolve(dependency)
+    } catch (error) {
+      return response
+        ? response.status(500).send('Error 500')
+        : Promise.reject(new Error(error))
+    }
+  }
+
   async getDependencyById (dependencyId, response) {
 
     try {
@@ -37,6 +54,21 @@ class Dependency {
     }
   }
 
+  async updateDependency (dependencyId, dependencyUpdated, response) {
+
+    try {
+      const updateResponse = await DependencyModel.update({ _id: dependencyId }, dependencyUpdated) 
+      
+      return response
+        ? response.json(updateResponse)
+        : Promise.resolve(updateResponse)
+  } catch (updateError) {
+    return response
+      ? response.status(500).send('Error 500')
+      : Promise.reject(new Error(updateError))
+    }
+  }
+
   async addItemsToDependendy (itemsBody = {}, dependencyId = '', response) {
 
     try {
@@ -50,7 +82,7 @@ class Dependency {
 
       const updateResponse = await DependencyModel.update({ _id: dependencyId }, findOneResponse)
       response.json(findOneResponse)
-    } catch (findOneError) {
+    } catch (error) {
       response.status(500).send('Error 500')
     }
   }

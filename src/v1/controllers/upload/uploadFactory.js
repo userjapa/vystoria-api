@@ -4,12 +4,12 @@ import EnumHelper from '../../../../commons/EnumHelper'
 
 class UploadFactory {
 
-  static chooseUploadType ({ type, dependencyId }, file, response) {
+  static chooseUploadType ({ type, itemId }, file, response) {
     const uploadController = new Upload()
 
     switch (type) {
       case EnumHelper.upload.types.image.value:
-        return uploadController.uploadSingleImage(file, dependencyId, response)
+        return uploadController.uploadSingleImage(file, itemId, response)
       case EnumHelper.upload.types.video.value:
         return
       default:

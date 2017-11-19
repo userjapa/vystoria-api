@@ -11,7 +11,7 @@ const schema = new mongoose.Schema({
   area: { type: Number, required: true },
   location: { lat: String, lng: String },
   dependencies: {
-    generalObservations: String,
+    generalObservations: { type: String, default: '' },
     dependenciesIds: Array
   },
   createdAt: { type: Date, default: new Date() }

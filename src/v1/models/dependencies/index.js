@@ -9,15 +9,18 @@ const detailsSchema = new mongoose.Schema({
   description: { type: String, trim: true }
 })
 
+const imageSchema = new mongoose.Schema({
+  _id: { type: String, default: () => Random.id(), required: true },
+  key: { type: String, required: true },
+  path: { type: String, required: true }
+})
+
 const itemsSchema = new mongoose.Schema({
   _id: { type: String, default: () => Random.id(), required: true },
   name: { type: String, trim: true, required: true },
   condition: { type: Number, enum: EnumHelper.conditions.ALL, required: true },
   observations: { type: String, trim: true },
-  images: {
-    id: { type: String, required: true },
-    path: { type: String, required: true }
-  },
+  images: [imageSchema],
   details: [detailsSchema]
 })
 
